@@ -1,4 +1,3 @@
--- Active: 1699973134556@@127.0.0.1@3306@testdb
 -- creates a table users
 -- create a table users
 CREATE TABLE IF NOT EXISTS users
