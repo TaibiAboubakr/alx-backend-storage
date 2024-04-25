@@ -2,6 +2,6 @@
 -- ranked by their longevity
 -- Calculate the lifespan of each band and filter by Glam rock style
 SELECT band_name, (IFNULL(split, '2022') - formed) AS lifespan
-FROM metal_bands WHERE FIND_IN_SET('Glam rock', IFNULL(style, "")) > 0
--- Order the result by lifespan in descending order
-ORDER BY lifespan DESC;
+	FROM metal_bands
+	WHERE FIND_IN_SET('Glam rock', IFNULL(style, "")) > 0
+	ORDER BY lifespan DESC;
