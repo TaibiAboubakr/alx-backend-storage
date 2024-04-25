@@ -1,6 +1,7 @@
 -- Creates a stored procedure ComputeAverageWeightedScoreForUsers that
 -- computes and store the average weighted score for all students.
 DROP PROCEDURE IF EXISTS ComputeAverageWeightedScoreForUsers;
+DELIMITER $$
 CREATE PROCEDURE ComputeAverageWeightedScoreForUsers ()
 BEGIN
     ALTER TABLE users ADD total_weighted_score INT NOT NULL;
@@ -30,4 +31,5 @@ BEGIN
         DROP COLUMN total_weighted_score;
     ALTER TABLE users
         DROP COLUMN total_weight;
-END ;
+END $$
+DELIMITER ;
