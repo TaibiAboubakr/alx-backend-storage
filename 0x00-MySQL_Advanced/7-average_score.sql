@@ -11,14 +11,17 @@ DROP PROCEDURE IF EXISTS ComputeAverageScoreForUser;
 CREATE PROCEDURE ComputeAverageScoreForUser(
 	IN user_id int)
 BEGIN
- 	DECLARE clc_score INT DEFAULT 0;
+ 	DECLARE sum_score INT DEFAULT 0;
  	DECLARE project_counter INT DEFAULT 0;
+
+SELECT SUM(score) INTO sum_score
+FROM corrections WHERE corrections.user_id = user_id;
 
 SELECT COUNT(*)
         INTO project_counter
         FROM corrections
         WHERE corrections.user_id = user_id;
 	SELECT AVG(score) INTO clc_score from corrections WHERE corrections.user_id = user_id;
-	UPDATE users SET users.average_score =IF(project_counter = 0, 0 ,clc_score) WHERE users.id = user_id;
+	UPDATE users SET users.average_score = IF(project_counter = 0, 0 ,sum_score / project_counter) WHERE users.id = user_id;
 END $$
 DELIMITER ;
