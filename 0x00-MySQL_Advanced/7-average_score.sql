@@ -19,6 +19,6 @@ SELECT COUNT(*)
         FROM corrections
         WHERE corrections.user_id = user_id;
 	SELECT AVG(score) INTO clc_score from corrections WHERE corrections.user_id = user_id;
-	UPDATE users SET users.average_score =IF(projects_counter = 0, 0 ,clc_score) WHERE users.id = user_id;
+	UPDATE users SET users.average_score =IF(project_counter = 0, 0 ,clc_score) WHERE users.id = user_id;
 END $$
 DELIMITER ;
