@@ -14,14 +14,13 @@ BEGIN
  	DECLARE sum_score INT DEFAULT 0;
  	DECLARE project_counter INT DEFAULT 0;
 
-SELECT SUM(score) INTO sum_score
-FROM corrections WHERE corrections.user_id = user_id;
+	SELECT SUM(score)
+	INTO sum_score
+	FROM corrections WHERE corrections.user_id = user_id;
 
-SELECT COUNT(*)
+	SELECT COUNT(*)
         INTO project_counter
-        FROM corrections
-        WHERE corrections.user_id = user_id;
-	SELECT AVG(score) INTO clc_score from corrections WHERE corrections.user_id = user_id;
-	UPDATE users SET users.average_score = IF(project_counter = 0, 0 ,sum_score / project_counter) WHERE users.id = user_id;
+        FROM corrections WHERE corrections.user_id = user_id;
+UPDATE users SET users.average_score = IF(project_counter = 0, 0 , sum_score / project_counter) WHERE users.id = user_id;
 END $$
 DELIMITER ;
