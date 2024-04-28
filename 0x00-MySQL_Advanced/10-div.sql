@@ -9,16 +9,19 @@ And returns a / b or 0 if b == 0
 */
 
 DELIMITER $$
+-- drop function 
+DROP FUNCTION IF EXISTS SafeDiv;
 -- function SafeDiv that divides (and returns) the first by the second number or returns 0 if the second number is equal to 0.
 CREATE FUNCTION SafeDiv(a INT, b INT)
-RETURNS DECIMAL
+RETURNS DECIMAL DETERMINISTIC
 BEGIN
+    DECLARE result DECIMAL;
+	SET result = 0;
 	IF b = 0 THEN
-		RETURN 0;
+		RETURN result;
 	END IF; 
-    DECLARE div DECIMAL();
-    SET div = a / b ;
-    RETURN div;
-END $$
+    SET result = (a/b) ;
+    RETURN result;
+END$$
 
 DELIMITER ;
