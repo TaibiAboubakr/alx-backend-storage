@@ -2,7 +2,6 @@
 """ log_stats """
 from pymongo import MongoClient
 
-
 if __name__ == "__main__":
     client = MongoClient('mongodb://127.0.0.1:27017')
     logs = client.logs.nginx
@@ -14,3 +13,4 @@ if __name__ == "__main__":
     print(f"\tmethod PUT: {logs.count_documents({'method':'PUT'})}")
     print(f"\tmethod PATCH: {logs.count_documents({'method':'PATCH'})}")
     print(f"\tmethod DELETE: {logs.count_documents({'method':'DELETE'})}")
+    print(f"{logs.count_documents({'method':'GET', 'path': '/status'})} status check")
