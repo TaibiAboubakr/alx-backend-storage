@@ -35,6 +35,4 @@ def get_page(url: str) -> str:
     """Returns the content of a URL after caching the request's response,
     and tracking the request.
     """
-    cached_content = redis_client.get(url)
-    if cached_content:
-        return cached_content.decode('utf-8')
+    return requests.get(url).text
